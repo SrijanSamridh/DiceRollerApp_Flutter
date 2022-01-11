@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,8 +15,20 @@ void main() {
     ),
   );
 }
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
 
-class DicePage extends StatelessWidget {
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  int rightDiceNumber = 1;
+  void shuffleDice(){
+    setState(() {
+      leftDiceNumber = Random().nextInt(6) + 1;
+      rightDiceNumber = Random().nextInt(6) + 1;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -23,17 +36,30 @@ class DicePage extends StatelessWidget {
         children: <Widget>[
           Expanded(
               child: TextButton(
-            onPressed: () {
-              print('Activated Left One.');
-            }, // Anonymous Function (voidCallback)
-            child: Image.asset('images/dice1.png'),
-          )),
+                onPressed: () {
+                  shuffleDice();
+                }, // Anonymous Function (voidCallback)
+                child: Image.asset('images/dice$leftDiceNumber.png'),
+              )),
+          // SafeArea(
+          //   child: Align(
+          //     alignment: FractionalOffset.bottomCenter,
+          //     child: FloatingActionButton.extended(
+          //       onPressed: () {
+          //          shuffleDice();
+          //       },
+          //       icon: const Icon(Icons.assistant_navigation),
+          //       label: const Text('Shuffle'),
+          //       backgroundColor: Colors.redAccent,
+          //     ),
+          //   ),
+          // ),
           Expanded(
             child: TextButton(
               onPressed: () {
-                print('Activated Right One.');
+                shuffleDice();
               }, // Anonymous Function (voidCallback)
-              child: Image.asset('images/dice1.png'),
+              child: Image.asset('images/dice$rightDiceNumber.png'),
             ),
           ),
         ],
@@ -41,3 +67,4 @@ class DicePage extends StatelessWidget {
     );
   }
 }
+
