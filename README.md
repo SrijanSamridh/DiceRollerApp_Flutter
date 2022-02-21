@@ -1,5 +1,5 @@
 
-# Dicee 🎲
+# Dicee 🎲 By Srijan Samridh
 
 ## Our Goal
 
